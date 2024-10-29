@@ -26,7 +26,7 @@ tasks.test {
 }
 
 application {
-    mainClass = "hexlet.code.App"
+    mainClass.set("hexlet.code.App")
 }
 
 checkstyle {
