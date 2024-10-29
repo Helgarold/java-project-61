@@ -8,3 +8,10 @@
 <a href="https://codeclimate.com/github/Helgarold/java-project-61/test_coverage">
     <img src="https://api.codeclimate.com/v1/badges/54bc5947e00b702267dc/test_coverage" />
 </a>
+
+
+# Brain Games
+
+## Пример игрового процесса
+Вы можете посмотреть пример запуска игры, где игрок выигрывает и проигрывает, по следующей ссылке: [Пример игры на Asciinema]
+(https://asciinema.org/a/OBU0d781Cr5AC4ZbX5VbArkwb)
