@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.Games.CalculatorGame;
 import hexlet.code.Games.EvenGame;
 import hexlet.code.Games.Cli;
+import hexlet.code.Games.GcdGame;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class App {
             try {
                 choice = cli.getChoice();
             } catch (InputMismatchException e) {
-                cli.displayMessage("Некорректный ввод, пожалуйста, введите номер от 1 до 4.");
+                cli.displayMessage("Некорректный ввод, пожалуйста, введите номер от 1 до 5."); // Изменяем сообщение на 1-5
                 scanner.nextLine(); // очищаем буфер
                 continue;
             }
@@ -42,12 +43,15 @@ public class App {
                 case 3:
                     gameEngine.runGame(new CalculatorGame(cli), name, scanner);
                     break;
-                case 4:
+                case 4: // Изменение позиции на уровень выше
+                    gameEngine.runGame(new GcdGame(cli), name, scanner); // Запуск игры GCD
+                    break;
+                case 5:
                     cli.displayMessage("Спасибо за игру, " + name + "! До свидания!");
                     scanner.close();
                     return;
                 default:
-                    cli.displayMessage("Некорректный выбор, пожалуйста, выберите номер от 1 до 4.");
+                    cli.displayMessage("Некорректный выбор, пожалуйста, выберите номер от 1 до 5."); // Изменение на 1-5
             }
         }
     }

@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.Games.Game;
 import java.util.Scanner;
 
+
 public class GameEngine implements Engine {
     @Override
     public void runGame(Game game, String playerName, Scanner scanner) {
@@ -18,4 +19,3 @@ public class GameEngine implements Engine {
         }
     }
 }
-
