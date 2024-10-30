@@ -31,19 +31,19 @@ application {
 
 checkstyle {
     toolVersion = "10.19" // Убедитесь, что версия корректна
-    configFile = file("config/checkstyle/checkstyle.xml")
+    configFile = file("config/checkstyle/checkstyle.xml") // Файл конфигурации Checkstyle
 }
 
 tasks.withType<Checkstyle>().configureEach {
     reports {
-        xml.required = false
-        html.required = true
-        html.stylesheet = resources.text.fromFile("config/checkstyle/checkstyle.xsl")
+        xml.required = false // Исключаем XML-отчет
+        html.required = true // Включаем HTML-отчет
+        html.stylesheet = resources.text.fromFile("config/checkstyle/checkstyle.xsl") // Стиль для HTML-отчета
     }
 }
 
 // Конфигурация checkstyleMain
 tasks.named<Checkstyle>("checkstyleMain") {
     source = fileTree("src/main/java") // Укажите директорию с исходным кодом
-    include("<strong>/*.java") // Включите все Java-файлы
+    include("*.java") // Включите все Java-файлы
 }
