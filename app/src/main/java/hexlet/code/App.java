@@ -4,6 +4,7 @@ import hexlet.code.Games.CalculatorGame;
 import hexlet.code.Games.EvenGame;
 import hexlet.code.Games.Cli;
 import hexlet.code.Games.GcdGame;
+import hexlet.code.Games.ProgressionGame;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -46,7 +47,10 @@ public class App {
                 case 4: // Изменение позиции на уровень выше
                     gameEngine.runGame(new GcdGame(cli), name, scanner); // Запуск игры GCD
                     break;
-                case 5:
+                case 5: // Изменение позиции на уровень выше
+                    gameEngine.runGame(new ProgressionGame(cli), name, scanner); // Запуск игры GCD
+                    break;
+                case 0:
                     cli.displayMessage("Спасибо за игру, " + name + "! До свидания!");
                     scanner.close();
                     return;
