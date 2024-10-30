@@ -22,7 +22,8 @@ public class Cli {
         System.out.println("2 - Even game");
         System.out.println("3 - Calculator game");
         System.out.println("4 - GCD");
-        System.out.println("5 - Exit");
+        System.out.println("5 - Progression");
+        System.out.println("0 - Exit");
     }
 
     public int getChoice() {
@@ -30,10 +31,10 @@ public class Cli {
             System.out.print("Выберите действие: ");
             try {
                 int choice = scanner.nextInt();
-                if (choice >= 1 && choice <= 5) {
-                    return choice;
+                if (choice >= 0 && choice <= 5) {
+                    return choice; // Позволяем 0 для выхода
                 } else {
-                    System.out.println("Некорректный ввод, выберите номер от 1 до 5.");
+                    System.out.println("Некорректный ввод, выберите номер от 0 до 5.");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Некорректный ввод, пожалуйста, введите номер действия.");
