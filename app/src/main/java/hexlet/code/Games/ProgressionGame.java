@@ -23,26 +23,26 @@ public class ProgressionGame implements Game {
             progression[j] = start + j * step;
         }
 
-        // Запоминаем скрытое значение
+        // Remember the hidden value
         int hiddenValue = progression[hiddenIndex];
-        progression[hiddenIndex] = -1; // Заменяем скрытое значение на -1 в прогрессии
+        progression[hiddenIndex] = -1; // Replace the hidden value with -1 in the progression
 
-        return new Object[]{progression, hiddenIndex, hiddenValue}; // Возвращаем массив прогрессии, индекс скрытого значения и само значение
+        return new Object[]{progression, hiddenIndex, hiddenValue}; // Return the progression array, the index of the hidden value and the value itself
     }
 
     @Override
     public void start(Scanner scanner, String playerName) {
-        System.out.println("Какое число пропущено в прогрессии?");
-        int rounds = 3; // Количество вопросов
+        System.out.println("Which number is missing in the progression?");
+        int rounds = 3; // Number of questions
 
         for (int i = 0; i < rounds; i++) {
-            // Генерация прогрессии и получение скрытого значения
+            // Generate a progression and get the hidden value
             Object[] progressionData = generateProgression();
             int[] progression = (int[]) progressionData[0];
             int hiddenIndex = (int) progressionData[1];
             int hiddenValue = (int) progressionData[2];
 
-            // Вывод вопроса
+            // Output the question
             for (int j = 0; j < progression.length; j++) {
                 if (j == hiddenIndex) {
                     System.out.print(".. ");
@@ -52,28 +52,29 @@ public class ProgressionGame implements Game {
             }
             System.out.println();
 
-            // Получение ответа игрока
-            System.out.print("Ваш ответ: ");
+            // Get the player's answer
+            System.out.print("Your answer: ");
             int playerAnswer;
             try {
                 playerAnswer = scanner.nextInt();
-                scanner.nextLine(); // Очищаем буфер
+                scanner.nextLine(); // Clear the buffer
             } catch (InputMismatchException e) {
-                System.out.println("Пожалуйста введите корректное число.");
-                scanner.nextLine(); // Очищаем буфер
-                i--; // Повторяем тот же раунд
+                System.out.println("Please enter a valid number.");
+                scanner.nextLine(); // Clear the buffer
+                i--; // Repeat the same round
                 continue;
             }
 
-            // Проверка ответа
+            // Check the answer
             if (playerAnswer == hiddenValue) {
-                System.out.println("Верно!");
+                System.out.println("Correct!");
             } else {
-                System.out.printf("%d - неверный ответ! Правильный ответ был %d.%n", playerAnswer, hiddenValue);
-                System.out.printf("Давай попробуем снова, %s!%n", playerName);
-                return; // Завершение игры
+                System.out.printf("%d - wrong answer! The correct answer was %d.%n", playerAnswer, hiddenValue);
+                System.out.printf("Let's try again, %s!%n", playerName);
+                return; // End the game
             }
         }
-        System.out.printf("Поздравляю, %s!%n", playerName);
+
+        System.out.printf("Congratulations, %s!%n", playerName);
     }
 }
