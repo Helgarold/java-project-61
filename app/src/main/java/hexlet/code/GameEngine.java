@@ -3,19 +3,18 @@ package hexlet.code;
 import hexlet.code.Games.Game;
 import java.util.Scanner;
 
-
 public class GameEngine implements Engine {
     @Override
     public void runGame(Game game, String playerName, Scanner scanner) {
         if (game == null || playerName == null || playerName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Неверные параметры: игра и имя игрока не могут быть null или пустыми.");
+            throw new IllegalArgumentException("Invalid parameters: game and player name cannot be null or empty.");
         }
 
-        System.out.println("Начинаем игру, " + playerName + "!");
+        System.out.println("Starting the game, " + playerName + "!");
         try {
             game.start(scanner, playerName);
         } catch (Exception e) {
-            System.out.println("Произошла ошибка при запуске игры: " + e.getMessage());
+            System.out.println("An error occurred while starting the game: " + e.getMessage());
         }
     }
 }
