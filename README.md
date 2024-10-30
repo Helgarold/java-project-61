@@ -14,4 +14,4 @@
 
 ## Пример игрового процесса
 Вы можете посмотреть пример запуска игры, где игрок выигрывает и проигрывает, по следующей ссылке: [Пример игры на Asciinema]
-(https://asciinema.org/a/IVYkhDQlE98GiDJ6Gyj9dTbNd)
+(https://asciinema.org/a/Onk8C4Osb3k7ZuzaIicGaazmy)
