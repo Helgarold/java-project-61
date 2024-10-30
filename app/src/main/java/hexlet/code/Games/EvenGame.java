@@ -14,36 +14,36 @@ public class EvenGame implements Game {
 
     @Override
     public void start(Scanner scanner, String playerName) {
-        cli.displayMessage(playerName + ", давай сыграем в игру Четные / Нечетные!");
-        cli.displayMessage("Правила: Ответьте 'yes', если число четное, и 'no', если нет.");
+        cli.displayMessage(playerName + ", let's play the Even / Odd game!");
+        cli.displayMessage("Rules: Answer 'yes' if the number is even, and 'no' if it is not.");
 
         for (int round = 0; round < 3; round++) {
-            int number = random.nextInt(100) + 1; // Случайное число от 1 до 100
-            cli.displayMessage("Раунд " + (round + 1) + ": " + number);
+            int number = random.nextInt(100) + 1; // Random number from 1 to 100
+            cli.displayMessage("Round " + (round + 1) + ": " + number);
 
             String answer;
             while (true) {
-                cli.displayMessage("Это четное число? (yes/no): ");
+                cli.displayMessage("Is this number even? (yes/no): ");
                 answer = scanner.next();
 
                 if (answer.equals("yes") || answer.equals("no")) {
-                    break; // выходим из цикла, если ответ корректный
+                    break; // Exit loop if input is valid
                 } else {
-                    cli.displayMessage("Некорректный ввод! Пожалуйста, введите 'yes' или 'no'.");
+                    cli.displayMessage("Invalid input! Please enter 'yes' or 'no'.");
                 }
             }
 
             String correctAnswer = (number % 2 == 0) ? "yes" : "no";
 
             if (answer.equals(correctAnswer)) {
-                cli.displayMessage("Правильно!");
+                cli.displayMessage("Correct!");
             } else {
-                cli.displayMessage("Неправильно! Правильный ответ: " + correctAnswer);
-                cli.displayMessage(String.format("Попробуйте еще раз, %s!", playerName));
-                return; // Завершаем игру при неправильном ответе
+                cli.displayMessage("Wrong! The correct answer was: " + correctAnswer);
+                cli.displayMessage(String.format("Let's try again, %s!", playerName));
+                return; // End game on wrong answer
             }
         }
 
-        cli.displayMessage(String.format("Поздравляем, %s!", playerName)); // Поздравляем игрока после всех раундов
+        cli.displayMessage(String.format("Congratulations, %s!", playerName)); // Congratulate the player after all rounds
     }
 }
