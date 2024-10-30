@@ -10,4 +10,4 @@ out/
 *.war
 *.ear
 .idea/
-.cast
+*.cast
