@@ -1,71 +1,56 @@
 package hexlet.code;
 
-import hexlet.code.Games.CalculatorGame;
-import hexlet.code.Games.EvenGame;
-import hexlet.code.Games.Cli;
-import hexlet.code.Games.GcdGame;
-import hexlet.code.Games.ProgressionGame;
-import hexlet.code.Games.PrimeGame;
-
-import java.util.InputMismatchException;
+import hexlet.code.games.Cli;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.CalculatorGame;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.ProgressionGame;
+import hexlet.code.games.PrimeGame;
 import java.util.Scanner;
 
 public class App {
-    private final Scanner scanner;
-    private final Cli cli;
-    private final GameEngine gameEngine;
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.println("Please enter the game number and press Enter.");
+                System.out.println("1 - Greet");
+                System.out.println("2 - Even");
+                System.out.println("3 - Calc");
+                System.out.println("4 - GCD");
+                System.out.println("5 - Progression");
+                System.out.println("6 - Prime");
+                System.out.println("0 - Exit");
+                System.out.print("Your choice: ");
 
-    public App(Scanner scanner) {
-        this.scanner = scanner;
-        this.cli = new Cli(scanner);
-        this.gameEngine = new GameEngine();
-    }
-
-    public void start() {
-        String name = cli.greetUser();
-        while (true) {
-            cli.displayMenu();
-            int choice;
-            try {
-                choice = cli.getChoice();
-            } catch (InputMismatchException e) {
-                cli.displayMessage("Invalid input, please enter a number from 0 to 6."); // Изменено
-                scanner.nextLine(); // очищаем буфер
-                continue;
-            }
-
-            switch (choice) {
-                case 1:
-                    cli.displayMessage("Your choice: 1 - Greet");
-                    cli.displayMessage(name + ", welcome to Brain Games!");
-                    break;
-                case 2:
-                    gameEngine.runGame(new EvenGame(cli), name, scanner);
-                    break;
-                case 3:
-                    gameEngine.runGame(new CalculatorGame(cli), name, scanner);
-                    break;
-                case 4:
-                    gameEngine.runGame(new GcdGame(cli), name, scanner); // Запуск игры GCD
-                    break;
-                case 5:
-                    gameEngine.runGame(new ProgressionGame(cli), name, scanner); // Запуск игры Progression
-                    break;
-                case 6: // Новый выбор для PrimeGame
-                    gameEngine.runGame(new PrimeGame(cli), name, scanner); // Исправлено: добавлен cli
-                    break;
-                case 0:
-                    cli.displayMessage("Thank you for playing, " + name + "! Goodbye!");
-                    scanner.close();
-                    return;
-                default:
-                    cli.displayMessage("Invalid choice, please select a number from 0 to 6."); // Изменено
+                if (scanner.hasNextLine()) {
+                    int choice = Integer.parseInt(scanner.nextLine());
+                    switch (choice) {
+                        case 1:
+                            Cli.greetUser(scanner);
+                            return; // Завершение после приветствия
+                        case 2:
+                            Engine.runGame(new EvenGame()); // Запуск игры "Even"
+                            return; // Завершение после игры
+                        case 3:
+                            Engine.runGame(new CalculatorGame()); // Запуск игры "Calc"
+                            return; // Завершение после игры
+                        case 4:
+                            Engine.runGame(new GcdGame()); // Запуск игры "GCD"
+                            return;
+                        case 5:
+                            Engine.runGame(new ProgressionGame()); // Запуск игры "Progression"
+                            return;
+                        case 6:
+                            Engine.runGame(new PrimeGame()); // Запуск игры "Prime"
+                            return;
+                        case 0:
+                            System.out.println("Goodbye!");
+                            return;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                    }
+                }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        new App(scanner).start(); // Запускаем приложение
     }
 }
