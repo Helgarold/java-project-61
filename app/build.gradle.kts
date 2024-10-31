@@ -47,3 +47,10 @@ tasks.named<Checkstyle>("checkstyleMain") {
     source = fileTree("src/main/java") // Укажите директорию с исходным кодом
     include("*.java") // Включите все Java-файлы
 }
+
+// Интеграция задачи checkCode
+tasks.register("checkCode") {
+    group = "verification"
+    description = "Запускает проверку кода с помощью Checkstyle."
+    dependsOn("checkstyleMain") // Зависимость от checkstyleMain
+}
