@@ -11,8 +11,11 @@ public class Engine {
     private static final int MAX_ROUNDS = 3;
 
     public static void runGame(Object game) {
-        if (!(game instanceof EvenGame || game instanceof CalculatorGame || game instanceof GcdGame ||
-                game instanceof ProgressionGame || game instanceof PrimeGame)) {
+        if (!(game instanceof EvenGame
+                || game instanceof CalculatorGame
+                || game instanceof GcdGame
+                || game instanceof ProgressionGame
+                || game instanceof PrimeGame)) {
             throw new IllegalArgumentException("Unknown game type");
         }
 
