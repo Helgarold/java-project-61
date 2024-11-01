@@ -17,10 +17,9 @@ public class App {
     private static final int PRIME_GAME = 6;
     private static final int EXIT_GAME = 0;
 
-    /*<strong>
-     * The main method to run the Brain Games application.
+    /**
      *
-             * @param args command-line arguments (not used)
+     * @param args
      */
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -32,6 +31,9 @@ public class App {
         }
     }
 
+    /**
+     *
+     */
     private static void displayMenu() {
         System.out.println("Welcome to the Brain Games!");
         System.out.println("Please enter the game number and press Enter.");
@@ -45,6 +47,11 @@ public class App {
         System.out.print("Your choice: ");
     }
 
+    /**
+     *
+     * @param input
+     * @param scanner
+     */
     private static void handleUserInput(String input, Scanner scanner) {
         try {
             int choice = Integer.parseInt(input);

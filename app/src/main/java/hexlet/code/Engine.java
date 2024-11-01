@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class Engine {
     private static final int MAX_ROUNDS = 3;
 
+    /**
+     *
+     * @param game
+     */
     public static void runGame(Object game) {
         if (!(game instanceof EvenGame
                 || game instanceof CalculatorGame
