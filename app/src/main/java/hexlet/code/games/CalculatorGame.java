@@ -8,17 +8,19 @@ public class CalculatorGame {
     private static final int MAX_NUMBER = 100; // Константа для верхнего предела
 
     /**
+     * Возвращает приветственное сообщение для игры.
      *
-     * @return
+             * @return строка с приветственным сообщением о правилах игры.
      */
     public String getWelcomeMessage() {
         return "What is the result of the expression?";
     }
 
     /**
+     * Генерирует вопрос для игры, состоящий из случайной арифметической операции с двумя числами.
      *
-     * @return
-     */
+             * @return строку в формате "число оператор число", представляющую вопрос.
+            */
     public String getQuestion() {
         int num1 = RANDOM.nextInt(MAX_NUMBER);
         int num2 = RANDOM.nextInt(MAX_NUMBER);
@@ -27,9 +29,10 @@ public class CalculatorGame {
     }
 
     /**
-     *
-     * @param question
-     * @return
+     * Получает правильный ответ на заданный вопрос.
+            *
+            * @param question строка, представляющая вопрос в формате "число оператор число".
+            * @return строка, представляющая правильный ответ на вопрос.
      */
     public String getCorrectAnswer(String question) {
         String[] parts = question.split(" ");

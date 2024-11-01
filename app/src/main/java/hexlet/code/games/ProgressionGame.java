@@ -11,17 +11,19 @@ public class ProgressionGame {
     private static final int MAX_START_NUMBER = 20; // Константа для верхнего предела начального числа
 
     /**
+     * Возвращает приветственное сообщение для игры.
      *
-     * @return
-     */
+             * @return строка с приветственным сообщением.
+            */
     public String getWelcomeMessage() {
         return "What number is missing in the progression?";
     }
 
     /**
-     *
-     * @return
-     */
+            * Генерирует вопрос и скрытое число в последовательности прогрессии.
+            *
+            * @return строка, представляющая последовательность и скрытое число, разделенные двоеточием.
+            */
     public String getQuestionAndCorrectAnswer() {
         int length = RANDOM.nextInt(MAX_LENGTH - MIN_LENGTH + 1) + MIN_LENGTH;
         int start = RANDOM.nextInt(PROGRESSION_START, MAX_START_NUMBER);
@@ -44,12 +46,13 @@ public class ProgressionGame {
     }
 
     /**
-     *
-     * @param question
-     * @return
+     * Получает правильный ответ на вопрос, заданный в формате "прогрессия:скрытое число".
+            *
+            * @param question строка с вопросом, содержащая прогрессию и скрытое число.
+            * @return строку, представляющую правильный ответ на вопрос.
      */
     public String getCorrectAnswer(String question) {
         String[] parts = question.split(":");
-        return parts[1];
+        return parts[1].trim(); // Удаляем лишние пробелы
     }
 }

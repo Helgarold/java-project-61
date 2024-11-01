@@ -7,16 +7,18 @@ public class EvenGame {
     private static final int MAX_NUMBER = 100; // Константа для верхнего предела случайного числа
 
     /**
+     * Возвращает приветственное сообщение для игры.
      *
-     * @return
-     */
+             * @return строка с указаниями для игрока о том, как отвечать.
+            */
     public String getWelcomeMessage() {
         return "Answer 'yes' if the number is even, otherwise answer 'no'.";
     }
 
     /**
-     *
-     * @return
+            * Генерирует случайное число для вопроса игры.
+            *
+            * @return строка, представляющая случайное число, которое будет использоваться в вопросе.
      */
     public String getQuestion() {
         int number = RANDOM.nextInt(MAX_NUMBER);
@@ -24,10 +26,11 @@ public class EvenGame {
     }
 
     /**
-     *
-     * @param question
-     * @return
-     */
+     * Получает правильный ответ на заданный вопрос.
+            *
+            * @param question строка, представляющая случайное число.
+            * @return строка "yes", если число четное, и "no", если нечетное.
+            */
     public String getCorrectAnswer(String question) {
         int number = Integer.parseInt(question);
         return (number % 2 == 0) ? "yes" : "no";

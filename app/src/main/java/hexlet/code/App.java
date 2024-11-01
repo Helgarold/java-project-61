@@ -18,8 +18,9 @@ public class App {
     private static final int EXIT_GAME = 0;
 
     /**
-     *
-     * @param args
+     * Главный метод приложения, который запускает меню игр.
+            *
+            * @param args аргументы командной строки, которые игнорируются.
      */
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -32,8 +33,8 @@ public class App {
     }
 
     /**
-     *
-     */
+     * Отображает меню выбора игр.
+            */
     private static void displayMenu() {
         System.out.println("Welcome to the Brain Games!");
         System.out.println("Please enter the game number and press Enter.");
@@ -48,10 +49,11 @@ public class App {
     }
 
     /**
+     * Обрабатывает выбор пользователя и запускает соответствующую игру.
      *
-     * @param input
-     * @param scanner
-     */
+             * @param input строка, представляющая выбор пользователя.
+            * @param scanner объект Scanner для ввода пользователя.
+            */
     private static void handleUserInput(String input, Scanner scanner) {
         try {
             int choice = Integer.parseInt(input);

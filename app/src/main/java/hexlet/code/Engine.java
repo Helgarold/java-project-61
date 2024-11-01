@@ -11,9 +11,12 @@ public class Engine {
     private static final int MAX_ROUNDS = 3;
 
     /**
-     *
-     * @param game
-     */
+     * Запускает игру.
+            *
+            * @param game объект типа игры, который будет запущен. Допустимые типы:
+            *             EvenGame, CalculatorGame, GcdGame, ProgressionGame или PrimeGame.
+     * @throws IllegalArgumentException если передан неизвестный тип игры.
+            */
     public static void runGame(Object game) {
         if (!(game instanceof EvenGame
                 || game instanceof CalculatorGame
