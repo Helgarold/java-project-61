@@ -12,6 +12,4 @@
 
 # Brain Games
 
-## Пример игрового процесса
-Вы можете посмотреть пример запуска игры, где игрок выигрывает и проигрывает, по следующей ссылке: [Пример игры на Asciinema]
-(https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou)
+[Пример игры на Asciinema](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou) демонстрирует игровой процесс, включая различные сценарии выигрыша и проигрыша.
