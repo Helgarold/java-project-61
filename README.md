@@ -12,4 +12,5 @@
 
 # Brain Games
 Пример работы программы, с выводом проигрышей, выйгрышей.
-[![asciicast]({https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou}.svg)]({https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou})
+	
+	[![asciicast](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou.svg)](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou)
