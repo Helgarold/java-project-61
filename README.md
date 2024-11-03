@@ -12,4 +12,4 @@
 
 # Brain Games
 
-[Пример игры на Asciinema](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou) демонстрирует игровой процесс, включая различные сценарии выигрыша и проигрыша.
+[![asciicast](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou.svg)](https://asciinema.org/a/j7lFXGUqZscdEgumYJgOByvou)
