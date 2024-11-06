@@ -16,7 +16,7 @@ app/tmp/
 */build/
 
 # IntelliJ IDEA
-.idea/
+.idea/  # Добавлено для игнорирования локальных настроек
 *.iws
 *.iml
 *.ipr
