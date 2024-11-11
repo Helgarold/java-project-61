@@ -1,49 +1,45 @@
 package hexlet.code.games;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class EvenGame {
 
     private static final Random RANDOM = new Random();
-    private static final int MAX_NUMBER = 100; // Константа для верхнего предела случайного числа
+    private static final int MAX_NUMBER = 100;
 
     /**
      * Возвращает приветственное сообщение для игры.
      *
-             * @return строка с указаниями для игрока о том, как отвечать.
-            */
+     * @return строка с указаниями для игрока о том, как отвечать.
+     */
     public String getWelcomeMessage() {
         return "Answer 'yes' if the number is even, otherwise answer 'no'.";
     }
 
     /**
-            * Генерирует случайное число для вопроса игры.
-            *
-            * @return строка, представляющая случайное число, которое будет использоваться в вопросе.
+     * Генерирует вопрос и правильный ответ для игры.
+     *
+     * @return массив строк, где первый элемент — это вопрос, а второй — правильный ответ.
      */
-    public String getQuestion() {
+    public String[] getQuestionAndCorrectAnswer() {
         int number = RANDOM.nextInt(MAX_NUMBER);
-        return String.valueOf(number);
+        String question = String.valueOf(number);
+        String correctAnswer = (number % 2 == 0) ? "yes" : "no"; // Определяем правильный ответ
+        return new String[]{question, correctAnswer}; // Возвращаем в виде массива
     }
 
     /**
-     * Получает правильный ответ на заданный вопрос.
-            *
-            * @param question строка, представляющая случайное число.
-            * @return boolean, true если число четное, и false если нечетное.
-            */
-    public boolean isEven(String question) {
-        int number = Integer.parseInt(question);
-        return number % 2 == 0;  // Возвращает true, если число четное
-    }
-
-    /**
-            * Получает строку с правильным ответом на заданный вопрос.
-            *
-            * @param question строка, представляющая случайное число.
-            * @return строка "yes" или "no", в зависимости от четности числа.
+     * Генерирует данные для игры.
+     *
+     * @return список строк массивов, содержащий вопрос и правильный ответ.
      */
-    public String getCorrectAnswer(String question) {
-        return isEven(question) ? "yes" : "no"; // Парсинг значения для представления в виде строки
+    public List<String[]> getGameData(int rounds) {
+        List<String[]> gameData = new ArrayList<>();
+        for (int i = 0; i < rounds; i++) {
+            gameData.add(getQuestionAndCorrectAnswer());
+        }
+        return gameData;
     }
 }
