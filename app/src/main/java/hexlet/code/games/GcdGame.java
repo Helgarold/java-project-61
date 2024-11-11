@@ -1,52 +1,57 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GcdGame {
-    private static final Random RANDOM = new Random();
-    private static final int MAX_NUMBER = 100; // Максимальное число для генерации
-    private static final int MIN_NUMBER = 1;   // Минимальное число для генерации
+
+    private static final int MAX_NUMBER = 100;
+    private static final int MIN_NUMBER = 1;
 
     /**
      * Возвращает приветственное сообщение для игры.
      *
-             * @return строка с приветственным сообщением.
-            */
+     * @return строка с указаниями для игрока о том, как отвечать.
+     */
     public String getWelcomeMessage() {
         return "Find the greatest common divisor of given numbers.";
     }
 
     /**
-            * Генерирует вопрос для игры, состоящий из двух случайных чисел.
-            *
-            * @return строку, представляющую два сгенерированных числа, разделенных пробелом.
+     * Генерирует вопрос и правильный ответ для игры.
+     *
+     * @return массив строк, где первый элемент — это вопрос, а второй — правильный ответ.
      */
-    public String getQuestion() {
-        int num1 = RANDOM.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
-        int num2 = RANDOM.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
-        return num1 + " " + num2; // Возвращает строку с двумя числами
+    public String[] getQuestionAndCorrectAnswer() {
+        int num1 = Utils.getRandomInt(MIN_NUMBER, MAX_NUMBER + 1); // Генерация первого числа
+        int num2 = Utils.getRandomInt(MIN_NUMBER, MAX_NUMBER + 1); // Генерация второго числа
+        String question = num1 + " " + num2; // Формируем строку с вопросом
+        String correctAnswer = String.valueOf(gcd(num1, num2)); // Вычисляем правильный ответ через НОД
+        return new String[]{question, correctAnswer}; // Возвращаем в виде массива
     }
 
     /**
-     * Получает правильный ответ на вопрос, состоящий из двух чисел.
-            *
-            * @param question строка с вопросом, содержащим два числа.
-            * @return строку с правильным ответом, представляющим наибольший общий делитель (НОД) двух чисел.
-            */
-    public String getCorrectAnswer(String question) {
-        String[] parts = question.split(" ");
-        int num1 = Integer.parseInt(parts[0]);
-        int num2 = Integer.parseInt(parts[1]);
-
-        return String.valueOf(gcd(num1, num2)); // Возвращает НОД
+     * Генерирует данные для игры.
+     *
+     * @param rounds количество раундов (вопросов)
+     * @return список строк массивов, содержащий вопрос и правильный ответ.
+     */
+    public List<String[]> getGameData(int rounds) {
+        List<String[]> gameData = new ArrayList<>();
+        for (int i = 0; i < rounds; i++) {
+            gameData.add(getQuestionAndCorrectAnswer()); // Добавляем вопрос и ответ в список
+        }
+        return gameData;
     }
 
     /**
-            * Вычисляет наибольший общий делитель (НОД) двух чисел.
-            *
-            * @param a первое число.
-     * @param b второе число.
-     * @return наибольший общий делитель двух чисел.
+     * Вычисляет наибольший общий делитель (НОД) двух чисел.
+     *
+     * @param a первое число
+     * @param b второе число
+     * @return НОД двух чисел
      */
     private int gcd(int a, int b) {
         while (b != 0) {
