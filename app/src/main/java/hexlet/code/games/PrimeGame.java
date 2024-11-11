@@ -1,56 +1,62 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrimeGame {
-    private static final Random RANDOM = new Random();
-    private static final int MAX_NUMBER = 100; // Константа для верхнего предела
+    private static final int MAX_NUMBER = 100;
 
     /**
-     * Возвращает приветственное сообщение для игры.
-     *
-             * @return строка с приветственным сообщением, объясняющим правила игры
+    Возвращает приветственное сообщение для игры.
+
+    @return строка с приветственным сообщением, объясняющим правила игры
      */
     public String getWelcomeMessage() {
         return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     }
 
     /**
-            * Генерирует вопрос и правильный ответ для игры.
-     *
-             * @return строка, представляющая сгенерированное число и правильный ответ, разделенные двоеточием
-     */
-    public String getQuestionAndCorrectAnswer() {
-        int number = RANDOM.nextInt(1, MAX_NUMBER); // Использование константы
-        return number + ":" + (isPrime(number) ? "yes" : "no");
-    }
+    Генерирует вопрос и правильный ответ для игры.
 
-    /**
-     * Получает правильный ответ на вопрос.
-     *
-             * @param question строка с вопросом, содержащая число и ожидаемый ответ
-     * @return строка с правильным ответом "yes" или "no"
+    @return массив строк, где первый элемент — это вопрос, а второй — правильный ответ.
             */
-    public String getCorrectAnswer(String question) {
-        String[] parts = question.split(":");
-        return parts[1]; // Возвращает правильный ответ, который был сгенерирован
+    public String[] getQuestionAndCorrectAnswer() {
+        int number = Utils.getRandomInt(1, MAX_NUMBER + 1); // Генерация случайного числа
+        String correctAnswer = isPrime(number) ? "yes" : "no"; // Определяем правильный ответ
+        return new String[]{String.valueOf(number), correctAnswer}; // Возвращаем в виде массива
     }
 
     /**
-            * Проверяет, является ли число простым.
-            *
-            * @param number число, которое нужно проверить
-     * @return true, если число простое; false в противном случае
+    Генерирует данные для игры.
+
+    @param rounds количество раундов (вопросов)
+      @return список строк массивов, содержащий вопрос и правильный ответ.
      */
+    public List<String[]> getGameData(int rounds) {
+        List<String[]> gameData = new ArrayList<>();
+        for (int i = 0; i < rounds; i++) {
+            gameData.add(getQuestionAndCorrectAnswer()); // Добавляем вопрос и ответ в список
+        }
+        return gameData;
+    }
+
+    /**
+    Проверяет, является ли число простым.
+
+    @param number число, которое нужно проверить
+      @return true, если число простое; false в противном случае
+    */
     private boolean isPrime(int number) {
         if (number < 2) {
-            return false;
+            return false; // Числа меньше 2 не являются простыми
         }
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
-                return false;
+                return false; // Найден делитель
             }
         }
-        return true;
+        return true; // Число является простым
     }
 }
