@@ -1,6 +1,8 @@
 package hexlet.code.games;
 
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProgressionGame {
     private static final Random RANDOM = new Random();
@@ -8,51 +10,52 @@ public class ProgressionGame {
     private static final int MAX_LENGTH = 10;
     private static final int PROGRESSION_START = 1;
     private static final int PROGRESSION_STEP = 2;
-    private static final int MAX_START_NUMBER = 20; // Константа для верхнего предела начального числа
+    private static final int MAX_START_NUMBER = 20;
 
     /**
      * Возвращает приветственное сообщение для игры.
      *
-             * @return строка с приветственным сообщением.
-            */
+     * @return строка с приветственным сообщением.
+     */
     public String getWelcomeMessage() {
         return "What number is missing in the progression?";
     }
 
     /**
-            * Генерирует вопрос и скрытое число в последовательности прогрессии.
-            *
-            * @return строка, представляющая последовательность и скрытое число, разделенные двоеточием.
-            */
-    public String getQuestionAndCorrectAnswer() {
+     * Генерирует вопрос и скрытое число в последовательности прогрессии.
+     *
+     * @return массив строк, где первый элемент — это вопрос, а второй — правильный ответ.
+     */
+    public String[] getQuestionAndCorrectAnswer() {
         int length = RANDOM.nextInt(MAX_LENGTH - MIN_LENGTH + 1) + MIN_LENGTH;
         int start = RANDOM.nextInt(PROGRESSION_START, MAX_START_NUMBER);
         int hiddenIndex = RANDOM.nextInt(length);
 
-        StringBuilder progression = new StringBuilder();
-        int hiddenNumber = 0;
-
+        List<String> progression = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             int currentNumber = start + i * PROGRESSION_STEP;
-            if (i == hiddenIndex) {
-                progression.append(".. ");
-                hiddenNumber = currentNumber;
-            } else {
-                progression.append(currentNumber).append(" ");
-            }
+            progression.add(String.valueOf(currentNumber));
         }
 
-        return progression.toString().trim() + ":" + hiddenNumber;
+        // Сохраняем скрытое число
+        String hiddenNumber = progression.get(hiddenIndex);
+        progression.set(hiddenIndex, ".."); // Заменяем на ".."
+
+        String progressionString = String.join(" ", progression);
+        return new String[]{progressionString, hiddenNumber};
     }
 
     /**
-     * Получает правильный ответ на вопрос, заданный в формате "прогрессия:скрытое число".
-            *
-            * @param question строка с вопросом, содержащая прогрессию и скрытое число.
-            * @return строку, представляющую правильный ответ на вопрос.
+     * Генерирует данные для игры.
+     *
+     * @param rounds количество раундов (вопросов)
+     * @return список строк массивов, содержащий вопрос и правильный ответ.
      */
-    public String getCorrectAnswer(String question) {
-        String[] parts = question.split(":");
-        return parts[1].trim(); // Удаляем лишние пробелы
+    public List<String[]> getGameData(int rounds) {
+        List<String[]> gameData = new ArrayList<>();
+        for (int i = 0; i < rounds; i++) {
+            gameData.add(getQuestionAndCorrectAnswer()); // Добавляем вопрос и ответ в список
+        }
+        return gameData;
     }
 }
