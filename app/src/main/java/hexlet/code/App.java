@@ -6,6 +6,7 @@ import hexlet.code.games.CalculatorGame;
 import hexlet.code.games.GcdGame;
 import hexlet.code.games.ProgressionGame;
 import hexlet.code.games.PrimeGame;
+
 import java.util.Scanner;
 
 public class App {
@@ -19,8 +20,8 @@ public class App {
 
     /**
      * Главный метод приложения, который запускает меню игр.
-            *
-            * @param args аргументы командной строки, которые игнорируются.
+     *
+     * @param args аргументы командной строки, которые игнорируются.
      */
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -34,7 +35,7 @@ public class App {
 
     /**
      * Отображает меню выбора игр.
-            */
+     */
     private static void displayMenu() {
         System.out.println("Welcome to the Brain Games!");
         System.out.println("Please enter the game number and press Enter.");
@@ -51,9 +52,9 @@ public class App {
     /**
      * Обрабатывает выбор пользователя и запускает соответствующую игру.
      *
-             * @param input строка, представляющая выбор пользователя.
-            * @param scanner объект Scanner для ввода пользователя.
-            */
+     * @param input строка, представляющая выбор пользователя.
+     * @param scanner объект Scanner для ввода пользователя.
+     */
     private static void handleUserInput(String input, Scanner scanner) {
         try {
             int choice = Integer.parseInt(input);
@@ -62,19 +63,24 @@ public class App {
                     Cli.greetUser(scanner); // Запуск приветствия
                     break; // Завершение программы после приветствия
                 case EVEN_GAME:
-                    Engine.runGame(new EvenGame()); // Запуск игры "Even"
+                    Engine.runGame(new EvenGame().getWelcomeMessage(),
+                            new EvenGame().getGameData(3)); // Запуск игры "Even"
                     break; // Завершение программы после игры
                 case CALCULATOR_GAME:
-                    Engine.runGame(new CalculatorGame()); // Запуск игры "Calc"
+                    Engine.runGame(new CalculatorGame().getWelcomeMessage(),
+                            new CalculatorGame().getGameData(3)); // Запуск игры "Calc"
                     break; // Завершение программы после игры
                 case GCD_GAME:
-                    Engine.runGame(new GcdGame()); // Запуск игры "GCD"
+                    Engine.runGame(new GcdGame().getWelcomeMessage(),
+                            new GcdGame().getGameData(3)); // Запуск игры "GCD"
                     break; // Завершение программы после игры
                 case PROGRESSION_GAME:
-                    Engine.runGame(new ProgressionGame()); // Запуск игры "Progression"
+                    Engine.runGame(new ProgressionGame().getWelcomeMessage(),
+                            new ProgressionGame().getGameData(3)); // Запуск игры "Progression"
                     break; // Завершение программы после игры
                 case PRIME_GAME:
-                    Engine.runGame(new PrimeGame()); // Запуск игры "Prime"
+                    Engine.runGame(new PrimeGame().getWelcomeMessage(),
+                            new PrimeGame().getGameData(3)); // Запуск игры "Prime"
                     break; // Завершение программы после игры
                 case EXIT_GAME:
                     System.out.println("Goodbye!");
