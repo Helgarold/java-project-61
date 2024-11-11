@@ -33,6 +33,7 @@ public class EvenGame {
     /**
      * Генерирует данные для игры.
      *
+     * @param rounds количество раундов (вопросов), которые нужно сгенерировать.
      * @return список строк массивов, содержащий вопрос и правильный ответ.
      */
     public List<String[]> getGameData(int rounds) {

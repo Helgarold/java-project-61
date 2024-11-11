@@ -17,6 +17,7 @@ public class App {
     private static final int PROGRESSION_GAME = 5;
     private static final int PRIME_GAME = 6;
     private static final int EXIT_GAME = 0;
+    private static final int NUMBER_OF_QUESTIONS = 3; // Новая константа для количества вопросов в игре
 
     /**
      * Главный метод приложения, который запускает меню игр.
@@ -64,23 +65,23 @@ public class App {
                     break; // Завершение программы после приветствия
                 case EVEN_GAME:
                     Engine.runGame(new EvenGame().getWelcomeMessage(),
-                            new EvenGame().getGameData(3)); // Запуск игры "Even"
+                            new EvenGame().getGameData(NUMBER_OF_QUESTIONS)); // Запуск игры "Even"
                     break; // Завершение программы после игры
                 case CALCULATOR_GAME:
                     Engine.runGame(new CalculatorGame().getWelcomeMessage(),
-                            new CalculatorGame().getGameData(3)); // Запуск игры "Calc"
+                            new CalculatorGame().getGameData(NUMBER_OF_QUESTIONS)); // Запуск игры "Calc"
                     break; // Завершение программы после игры
                 case GCD_GAME:
                     Engine.runGame(new GcdGame().getWelcomeMessage(),
-                            new GcdGame().getGameData(3)); // Запуск игры "GCD"
+                            new GcdGame().getGameData(NUMBER_OF_QUESTIONS)); // Запуск игры "GCD"
                     break; // Завершение программы после игры
                 case PROGRESSION_GAME:
                     Engine.runGame(new ProgressionGame().getWelcomeMessage(),
-                            new ProgressionGame().getGameData(3)); // Запуск игры "Progression"
+                            new ProgressionGame().getGameData(NUMBER_OF_QUESTIONS)); // Запуск игры "Progression"
                     break; // Завершение программы после игры
                 case PRIME_GAME:
                     Engine.runGame(new PrimeGame().getWelcomeMessage(),
-                            new PrimeGame().getGameData(3)); // Запуск игры "Prime"
+                            new PrimeGame().getGameData(NUMBER_OF_QUESTIONS)); // Запуск игры "Prime"
                     break; // Завершение программы после игры
                 case EXIT_GAME:
                     System.out.println("Goodbye!");
