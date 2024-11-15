@@ -1,7 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.utils.Utils;
-import hexlet.code.Engine; // Предполагается, что вы импортируете Engine
+import hexlet.code.Engine;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +9,13 @@ public class CalculatorGame {
 
     private static final char[] OPERATORS = {'+', '-', '*'};
     private static final int MAX_NUMBER = 100;
+    private static final int NUMBER_OF_ROUNDS = 3; // Константа для количества раундов
 
     public static void startGame() {
         // Получаем приветственное сообщение
         String welcomeMessage = getWelcomeMessage();
         // Получаем данные для игры
-        List<String[]> gameData = getGameData(3); // 3 раунда
+        List<String[]> gameData = getGameData(NUMBER_OF_ROUNDS); // Используем константу
         // Запускаем игру
         Engine.runGame(welcomeMessage, gameData);
     }
