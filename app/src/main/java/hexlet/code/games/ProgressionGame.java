@@ -1,7 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.utils.Utils;
-import hexlet.code.Engine; // Импортируем класс Engine для запуска игры
+import hexlet.code.Engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,15 @@ public class ProgressionGame {
 
     private static final int MAX_NUMBER = 100;
     private static final int MIN_NUMBER = 1;
-    private static final int PROGRESSION_LENGTH = 10; // Длина прогрессии
+    private static final int PROGRESSION_LENGTH = 10;
+    private static final int NUMBER_OF_ROUNDS = 3; // Константа для количества раундов
+    private static final int PROGRESSION_STEP_LIMIT = 10; // Максимальный шаг прогрессии
 
     public static void startGame() {
         // Получаем приветственное сообщение
         String welcomeMessage = getWelcomeMessage();
         // Получаем данные для игры
-        List<String[]> gameData = getGameData(3); // 3 раунда
+        List<String[]> gameData = getGameData(NUMBER_OF_ROUNDS); // Используем константу
         // Запускаем игру
         Engine.runGame(welcomeMessage, gameData);
     }
@@ -26,15 +28,15 @@ public class ProgressionGame {
     }
 
     public static String[] getQuestionAndCorrectAnswer() {
-        int start = Utils.getRandomInt(MIN_NUMBER, MAX_NUMBER); // Начальное число прогрессии
-        int step = Utils.getRandomInt(MIN_NUMBER, MAX_NUMBER / 10); // Шаг прогрессии
-        int missingIndex = Utils.getRandomInt(0, PROGRESSION_LENGTH); // Индекс пропущенного числа
+        int start = Utils.getRandomInt(MIN_NUMBER, MAX_NUMBER);
+        int step = Utils.getRandomInt(MIN_NUMBER, PROGRESSION_STEP_LIMIT);
+        int missingIndex = Utils.getRandomInt(0, PROGRESSION_LENGTH);
         StringBuilder question = new StringBuilder();
 
         for (int i = 0; i < PROGRESSION_LENGTH; i++) {
             int currentNumber = start + (i * step);
             if (i == missingIndex) {
-                question.append(".. "); // Заменяем пропущенное число на ".."
+                question.append(".. ");
             } else {
                 question.append(currentNumber).append(" ");
             }
@@ -49,7 +51,7 @@ public class ProgressionGame {
     public static List<String[]> getGameData(int rounds) {
         List<String[]> gameData = new ArrayList<>();
         for (int i = 0; i < rounds; i++) {
-            gameData.add(getQuestionAndCorrectAnswer()); // Добавляем вопрос и ответ в список
+            gameData.add(getQuestionAndCorrectAnswer());
         }
         return gameData;
     }
