@@ -1,45 +1,38 @@
 package hexlet.code.games;
 
+import hexlet.code.utils.Utils;
+import hexlet.code.Engine; // Предполагается, что вы импортируете Engine
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CalculatorGame {
 
-    private static final Random RANDOM = new Random();
-    private static final String[] OPERATORS = {"+", "-", "*"}; // Добавили оператор умножения
-    private static final int MAX_NUMBER = 100; // Константа для верхнего предела
+    private static final char[] OPERATORS = {'+', '-', '*'};
+    private static final int MAX_NUMBER = 100;
 
-    /**
-     * Возвращает приветственное сообщение для игры.
-     *
-     * @return строка с приветственным сообщением о правилах игры.
-     */
-    public String getWelcomeMessage() {
+    public static void startGame() {
+        // Получаем приветственное сообщение
+        String welcomeMessage = getWelcomeMessage();
+        // Получаем данные для игры
+        List<String[]> gameData = getGameData(3); // 3 раунда
+        // Запускаем игру
+        Engine.runGame(welcomeMessage, gameData);
+    }
+
+    public static String getWelcomeMessage() {
         return "What is the result of the expression?";
     }
 
-    /**
-     * Генерирует вопрос и правильный ответ для игры.
-     *
-     * @return массив строк, где первый элемент — это вопрос, а второй — правильный ответ.
-     */
-    public String[] getQuestionAndCorrectAnswer() {
-        int num1 = RANDOM.nextInt(MAX_NUMBER);
-        int num2 = RANDOM.nextInt(MAX_NUMBER);
-        String operator = OPERATORS[RANDOM.nextInt(OPERATORS.length)];
-        String question = String.format("%d %s %d", num1, operator, num2);
-        String correctAnswer = calculateAnswer(num1, operator, num2); // Вычисляем правильный ответ
-        return new String[]{question, correctAnswer}; // Возвращаем в виде массива
+    public static String[] getQuestionAndCorrectAnswer() {
+        int num1 = Utils.getRandomInt(0, MAX_NUMBER);
+        int num2 = Utils.getRandomInt(0, MAX_NUMBER);
+        char operator = getRandomOperator();
+        String question = String.format("%d %c %d", num1, operator, num2);
+        int correctAnswer = calculateAnswer(num1, operator, num2);
+        return new String[]{question, String.valueOf(correctAnswer)};
     }
 
-    /**
-     * Генерирует данные для игры.
-     *
-     * @param rounds количество раундов (вопросов), которые нужно сгенерировать.
-     * @return список строк массивов, содержащий вопрос и правильный ответ.
-     */
-    public List<String[]> getGameData(int rounds) {
+    public static List<String[]> getGameData(int rounds) {
         List<String[]> gameData = new ArrayList<>();
         for (int i = 0; i < rounds; i++) {
             gameData.add(getQuestionAndCorrectAnswer());
@@ -47,24 +40,20 @@ public class CalculatorGame {
         return gameData;
     }
 
-    /**
-     * Вычисляет правильный ответ на выражение.
-     *
-     * @param num1    первый операнд.
-     * @param operator оператор.
-     * @param num2    второй операнд.
-     * @return строка, представляющая правильный ответ на вопрос.
-     */
-    private String calculateAnswer(int num1, String operator, int num2) {
+    private static int calculateAnswer(int num1, char operator, int num2) {
         switch (operator) {
-            case "+":
-                return String.valueOf(num1 + num2);
-            case "-":
-                return String.valueOf(num1 - num2);
-            case "*":
-                return String.valueOf(num1 * num2);
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
             default:
-                throw new IllegalArgumentException("Unknown operator: " + operator); // Неизвестный оператор
+                throw new IllegalArgumentException("Unknown operator: " + operator);
         }
+    }
+
+    private static char getRandomOperator() {
+        return OPERATORS[Utils.getRandomInt(0, OPERATORS.length)];
     }
 }
