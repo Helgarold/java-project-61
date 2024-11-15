@@ -1,7 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.utils.Utils;
-import hexlet.code.Engine; // Импортируем класс Engine для запуска игры
+import hexlet.code.Engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,13 @@ import java.util.List;
 public class PrimeGame {
 
     private static final int MAX_NUMBER = 100;
+    private static final int NUMBER_OF_ROUNDS = 3; // Константа для количества раундов
 
     public static void startGame() {
         // Получаем приветственное сообщение
         String welcomeMessage = getWelcomeMessage();
         // Получаем данные для игры
-        List<String[]> gameData = getGameData(3); // 3 раунда
+        List<String[]> gameData = getGameData(NUMBER_OF_ROUNDS); // Используем константу
         // Запускаем игру
         Engine.runGame(welcomeMessage, gameData);
     }
@@ -24,28 +25,28 @@ public class PrimeGame {
     }
 
     public static String[] getQuestionAndCorrectAnswer() {
-        int number = Utils.getRandomInt(1, MAX_NUMBER + 1); // Генерация случайного числа
-        String correctAnswer = isPrime(number) ? "yes" : "no"; // Определяем правильный ответ
-        return new String[]{String.valueOf(number), correctAnswer}; // Возвращаем в виде массива
+        int number = Utils.getRandomInt(1, MAX_NUMBER + 1);
+        String correctAnswer = isPrime(number) ? "yes" : "no";
+        return new String[]{String.valueOf(number), correctAnswer};
     }
 
     public static List<String[]> getGameData(int rounds) {
         List<String[]> gameData = new ArrayList<>();
         for (int i = 0; i < rounds; i++) {
-            gameData.add(getQuestionAndCorrectAnswer()); // Добавляем вопрос и ответ в список
+            gameData.add(getQuestionAndCorrectAnswer());
         }
         return gameData;
     }
 
     private static boolean isPrime(int number) {
         if (number < 2) {
-            return false; // Числа меньше 2 не являются простыми
+            return false;
         }
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
-                return false; // Найден делитель
+                return false;
             }
         }
-        return true; // Число является простым
+        return true;
     }
 }
